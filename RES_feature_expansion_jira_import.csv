@@ -1,0 +1,206 @@
+﻿Work item ID,Work type,Summary,Parent,Description,Acceptance criteria,Story point estimate,Priority,MoSCoW,Requirement IDs,Labels,Labels,Labels,Assignee,Reviewer,Estimate hours
+1,Epic,E9 Gifts & treats,,Features F1. Requirements FR-19. Planned release 1.1.,,,Medium,Should,FR-19,feature-expansion,,,,,
+2,Epic,E10 Self-claim,,"Features F2. Requirements FR-20, FR-21. Planned release 1.1.",,,High,Must,"FR-20, FR-21",feature-expansion,,,,,
+3,Epic,E11 Promotions & discounts,,Features F3. Requirements FR-22. Planned release 1.2.,,,Medium,Should,FR-22,feature-expansion,,,,,
+4,Epic,E12 Payment tracking & reminders,,"Features F4. Requirements FR-23, FR-24. Planned release 1.1.",,,High,Must,"FR-23, FR-24",feature-expansion,,,,,
+5,Epic,E13 Transparency & comments,,"Features F6, F7. Requirements FR-25, FR-26. Planned release 1.1.",,,High,Must,"FR-25, FR-26",feature-expansion,,,,,
+6,Epic,E14 Spending insights,,"Features F8. Requirements FR-27, FR-28. Planned release 1.2.",,,Low,Could,"FR-27, FR-28",feature-expansion,,,,,
+7,Epic,E15 Group settlement,,Features F9. Requirements FR-29. Planned release 1.2.,,,Medium,Should,FR-29,feature-expansion,,,,,
+8,Epic,E16 Payment details (proposed),,"Features F10. Requirements FR-30. Planned release 1.2, pending D-10.",,,Low,Could,FR-30,feature-expansion,,,,,
+9,Story,US-40 Cover an item or category as a gift,1,"As a member, I want to mark items or a whole category (e.g. all drinks) as ""on me"", so that I can treat friends without doing the maths.","1. Given B's drinks total RM 10.00 and A covers the drinks, when the split is calculated, then A owes RM 81.62 and B owes RM 34.98 (BR-13 example).
+2. Given a gift is set, when anyone views the item, then it shows ""Covered by A"".
+3. Given A removes the gift, when the split is recalculated, then all shares return to their previous amounts.",5,Medium,Should,"FR-19, BR-13",backend,frontend,feature-expansion,Person B,Person A,
+10,Story,US-41 Treat a person,1,"As a group, we want to treat one member (e.g. on their birthday), so that their share is spread across the rest of us automatically.","1. Given Mei is treated with the proportional option, when the split is finalised, then Mei owes RM 0.00 and the others' shares rise in proportion to their subtotals.
+2. Given the ""equally"" option, when the split is finalised, then Mei's share is divided equally among the others, with rounding by BR-05.
+3. Given Mei opens her link, when she views the summary, then she sees ""You've been treated"" and not what others paid for her.",5,Medium,Should,"FR-19, BR-14",backend,frontend,feature-expansion,Person B,Person A,
+11,Story,US-45 Personal link for each member,2,"As a payer, I want each member to get a personal link, so that friends can act on the receipt without signing up and the app knows who is who.","1. Given a receipt with 5 members, when the payer taps ""Let friends claim"", then 5 unique links with 128-bit random tokens are created.
+2. Given Daniel opens his link, when the page loads, then it greets him by name and shows only this receipt.
+3. Given the payer revokes a link, when it is opened, then the page shows ""This link is no longer active"".",5,High,Must,"FR-20, BR-15, NFR-06",backend,frontend,feature-expansion,Person B,Person A,
+12,Story,US-46 Claim my items,2,"As a friend, I want to tap the items I ate on my personal link, so that I only pay for my own food.","1. Given Daniel opens his link, when he taps ""Nasi lemak"", then it shows as claimed by him and his running total updates.
+2. Given an item with quantity 3, when he claims 1, then 1 of 3 is assigned to him and 2 remain unclaimed.
+3. Given the split is finalised, when he tries to change a claim, then claims are locked and a message explains why.
+4. Given a poor connection, when he taps an item, then the claim is either saved or an error is shown; no tap is lost silently.",8,High,Must,"FR-20, BR-15",frontend,backend,feature-expansion,Person A,Person B,
+13,Story,US-47 Mark an item as shared,2,"As a friend, I want to mark an item as shared with others, so that shared dishes are split fairly.","1. Given Daniel and Ali both claim the satay, when shares are calculated, then each pays half.
+2. Given Daniel taps ""Shared with"" and picks Ali and Mei, when he saves, then the satay is split 3 ways.",3,High,Must,"FR-20, BR-04, BR-15",frontend,backend,feature-expansion,Person A,Person B,
+14,Story,US-48 See claim progress,2,"As a payer, I want to see claim progress and be told when everything is claimed, so that I know when to finalise.","1. Given 3 of 12 items are unclaimed, when Aina opens the receipt, then she sees ""9 of 12 items claimed"" and which friends haven't opened their link.
+2. Given the last item is claimed, when it is saved, then Aina gets a push notification ""All items claimed"".",3,High,Must,FR-21,frontend,backend,feature-expansion,Person A,Person B,
+15,Story,US-49 Override claims before finalising,2,"As a payer, I want to change or assign claims before finalising, so that mistakes are fixed and nothing is left unclaimed.","1. Given Daniel claimed a teh tarik by mistake, when Aina reassigns it to Ali, then both totals update and Daniel is notified.
+2. Given 1 item is unclaimed, when Aina taps Finalise, then she is asked to assign it first (BR-08).",3,High,Must,"FR-21, BR-08, BR-15",frontend,backend,feature-expansion,Person A,Person B,
+16,Story,US-52 Read discounts and promos from the receipt,3,"As a payer, I want discount, voucher and promo lines read from the receipt, so that I don't have to enter them myself.","1. Given a receipt with ""VOUCHER -10.00"", when it is extracted, then a bill-level discount of RM 10.00 is recorded, not an item.
+2. Given ""B1F1 Latte -12.00"" below a latte line, when it is extracted, then an item-level discount is linked to that latte.
+3. Given a discount line the AI can't place, when it is extracted, then it is flagged for review.",5,Medium,Should,"FR-22, BR-16",ai,backend,feature-expansion,Person B,Person A,
+17,Story,US-53 Choose who benefits from a discount,3,"As a payer, I want to choose whether a discount helps everyone or only the item's owner, so that the split matches what the group agreed.","1. Given a RM 10.00 bill voucher with mode Everyone, and A has 60% and B 40% of the subtotal, when finalised, then A's share drops by RM 6.00 and B's by RM 4.00.
+2. Given a RM 12.00 discount on B's latte with mode Item owner, when finalised, then only B's subtotal drops by RM 12.00 and charges are re-shared under BR-02.
+3. Given the payer changes a discount's mode, when saved, then all shares recalculate immediately.",5,Medium,Should,"FR-22, BR-16",backend,frontend,feature-expansion,Person B,Person A,
+18,Story,US-54 Share a buy 1 free 1 fairly,3,"As a payer, I want to choose how a buy 1 free 1 is shared, so that the two people sharing the deal pay fairly.","1. Given two RM 12.00 lattes with one free, owned by A and B, when the mode is ""average"", then each pays RM 6.00 before charges.
+2. Given the mode ""free item goes to its owner"", when finalised, then the owner of the free latte pays RM 0.00 for it.",3,Medium,Should,"FR-22, BR-16",backend,frontend,feature-expansion,Person B,Person A,
+19,Task,US-57 Spike: choose reminder channels,4,"Question to answer: which channels can reach every member, including friends without the app or an email address? Compare push notifications, email and WhatsApp (automated messages usually need the paid WhatsApp Business Platform). Time box: 1 day. Output: decision D-11 in DOC-06.","1. A comparison of reach, cost, setup effort and consent for each channel is written in DOC-06.
+2. Decision D-11 is agreed by A and B.",2,High,Must,FR-24,spike,backend,feature-expansion,Person B,Person A,
+20,Story,US-58 Tell the payer I've paid,4,"As a friend, I want to tap ""I've paid"" and optionally attach a transfer screenshot, so that the payer knows without me sending a message.","1. Given Daniel owes RM 23.40, when he taps ""I've paid"", then his status becomes Marked paid and Aina is notified.
+2. Given he attaches a screenshot, when Aina opens it, then she can see the image and nobody else can.",3,High,Must,"FR-23, BR-17",frontend,backend,feature-expansion,Person A,Person B,
+21,Story,US-59 Confirm payments,4,"As a payer, I want to confirm payments or record cash payments, so that everyone's status is accurate.","1. Given Daniel is Marked paid, when Aina confirms, then his status is Confirmed and his reminders stop.
+2. Given Ali paid in cash, when Aina marks him as paid, then his status goes straight to Confirmed.
+3. Given every participant is Confirmed, when the last one is confirmed, then the receipt shows ""Settled"".",2,High,Must,"FR-23, BR-17",frontend,backend,feature-expansion,Person A,Person B,
+22,Story,US-60 Automatic polite reminders,4,"As a payer, I want the app to send polite reminders to friends who haven't paid, so that I don't have to chase them myself.","1. Given Daniel is Unpaid 24 hours after finalising, when the scheduler runs, then he receives a friendly reminder from the app.
+2. Given a reminder falls due at 11 pm, when the scheduler runs, then it is held until 9 am Malaysia time.
+3. Given Daniel has marked himself paid, when his next reminder time arrives, then nothing is sent.
+4. Given 4 reminders have been sent, when the schedule continues, then no more are sent and Aina sees ""Reminders finished"".",8,High,Must,"FR-24, BR-18",backend,frontend,feature-expansion,Person B,Person A,
+23,Story,US-61 Control reminders,4,"As a payer, I want to pause, resume or change reminders for each person, so that I stay in control of how my friends are contacted.","1. Given Aina pauses reminders for Ali, when reminders fall due, then none are sent to Ali until she resumes them.
+2. Given Aina changes the schedule to every 2 days, when saved, then the next reminder follows the new schedule.",2,High,Must,"FR-24, BR-18",frontend,backend,feature-expansion,Person A,Person B,
+24,Story,US-62 One-tap WhatsApp reminder,4,"As a payer, I want a one-tap prefilled WhatsApp reminder for friends the app can't reach, so that every friend can be reminded politely.","1. Given Ali has neither the app nor an email address, when Aina taps ""Send reminder"", then WhatsApp opens with a friendly message and Ali's personal link.",2,Medium,Should,FR-24,frontend,feature-expansion,,Person A,Person B,
+25,Story,US-65 See the receipt photo and full item list,5,"As a friend, I want to see the receipt photo and the full item list from my link, so that I can check the bill myself.","1. Given Daniel opens his link, when he taps ""View receipt"", then he sees the photo (zoomable) and every item with who claimed it.
+2. Given his link has been revoked, when he opens the old photo address, then access is refused.",3,High,Must,FR-25,frontend,backend,feature-expansion,Person A,Person B,
+26,Story,US-66 See how my amount was calculated,5,"As a friend, I want a breakdown of my amount, so that I trust it.","1. Given Daniel owes RM 23.40, when he taps ""How was this calculated?"", then he sees his items, his part of shared items, and his share of service charge, tax, tip and discounts.
+2. Given the breakdown is shown, when the lines are added, then they equal RM 23.40 exactly.",3,High,Must,FR-25,frontend,backend,feature-expansion,Person A,Person B,
+27,Story,US-68 Comment on an item,5,"As a member, I want to comment on an item, so that I can query it without an argument in the group chat.","1. Given Daniel comments ""I didn't order this"" on a teh tarik, when he posts it, then the comment shows on that item and Aina is notified.
+2. Given Aina replies, when she posts, then Daniel is notified.",5,Medium,Should,"FR-26, BR-19",frontend,backend,feature-expansion,Person A,Person B,
+28,Story,US-69 Resolve item queries,5,"As a payer, I want to resolve item queries by editing the item or replying, so that disputes are closed quickly.","1. Given an open comment, when Aina edits the item, then shares recalculate and she can mark the comment resolved.
+2. Given 1 open comment, when Aina taps Finalise, then she sees ""1 open question"" but can continue.",3,Medium,Should,"FR-26, BR-19",frontend,backend,feature-expansion,Person A,Person B,
+29,Story,US-72 Categorise receipts automatically,6,"As a user, I want receipts categorised automatically, so that I don't have to tag them.","1. Given a receipt from a nasi kandar restaurant, when it is extracted, then its category is suggested as ""Mamak"".
+2. Given I have a saved rule for that merchant, when a new receipt from it is extracted, then my rule wins over the AI suggestion.",5,Low,Could,"FR-27, BR-20",ai,data,feature-expansion,Person B,Person A,
+30,Story,US-73 Change a category,6,"As a user, I want to change a receipt's category and have the app remember it for that merchant, so that my summaries stay accurate.","1. Given Aina changes a receipt from ""Café"" to ""Mamak"" for merchant X, when she saves, then future receipts from X are categorised as Mamak for her.",3,Low,Could,"FR-27, BR-20",frontend,backend,feature-expansion,Person A,Person B,
+31,Story,US-74 Monthly spending summary,6,"As a user, I want a monthly summary of my own share by category with the change from last month, so that I understand my spending.","1. Given Aina's share of eating out is RM 310 in November and RM 258 in October, when she opens the summary, then it shows ""RM 310, up 20%"".
+2. Given Aina paid a RM 200 bill but her share was RM 40, when the summary is calculated, then only RM 40 is counted (BR-20).
+3. Given there was no spending last month, when the summary is shown, then no percentage is shown.",5,Low,Could,"FR-28, BR-20",data,frontend,feature-expansion,Person B,Person A,
+32,Story,US-75 Monthly summary notification,6,"As a user, I want a notification at the start of each month, so that I remember to check my spending.","1. Given it is 9 am on the 1st of the month, when the job runs, then users who spent anything last month get a summary notification.
+2. Given a user has opted out in settings, when the job runs, then they get nothing.",3,Low,Could,FR-28,backend,frontend,feature-expansion,Person B,Person A,
+33,Story,US-78 Net balances across an event,7,"As a trip organiser, I want all receipts in the event combined into one balance per person, so that we can see who owes what overall.","1. Given the 4-person trip example in section 3, when balances are calculated, then they are +150.00, +50.00, −50.00 and −150.00.
+2. Given any event, when balances are calculated, then they add up to RM 0.00.",5,Medium,Should,"FR-29, BR-21",backend,frontend,feature-expansion,Person B,Person A,
+34,Story,US-79 Suggest the fewest transfers,7,"As a group, we want the app to suggest the fewest transfers, so that we settle with as few payments as possible.","1. Given the trip example, when the plan is generated, then it shows 2 transfers: D pays A RM 150.00 and C pays B RM 50.00.
+2. Given an event with n members, when the plan is generated, then it has at most n − 1 transfers.",5,Medium,Should,"FR-29, BR-21",backend,frontend,feature-expansion,Person B,Person A,
+35,Story,US-80 Mark settlement transfers as paid,7,"As a member, I want to mark each settlement transfer as paid, so that the trip is settled with the same payment flow as single receipts.","1. Given D pays A, when D marks it paid and A confirms, then the transfer is Confirmed.
+2. Given a settlement transfer is unpaid, when reminders fall due, then BR-18 reminders apply to it.",3,Medium,Should,"FR-29, BR-17, BR-21",frontend,backend,feature-expansion,Person A,Person B,
+36,Task,US-83 Spike: validate payment details feature,8,"Question to answer: do users want the payer's DuitNow QR or bank details shown, and can we show them safely? Check survey Q10, ask 3 interviewees, and review privacy. Time box: 1 day. Output: decision D-10 (go / no-go).","1. Findings and decision D-10 are written in DOC-06.
+2. FR-30 status changes from Proposed to Approved or Dropped.",2,Low,Could,FR-30,spike,research,feature-expansion,Person A,Person B,
+37,Story,US-84 Add my payment details,8,"As a payer, I want to add my DuitNow QR image or bank details once, so that friends can pay me without asking.","1. Given Aina uploads her DuitNow QR, when she saves, then it is stored privately and shown in her profile.
+2. Given she removes it, when friends open their links, then it is no longer shown.",3,Low,Could,"FR-30, BR-22",backend,frontend,feature-expansion,Person B,Person A,
+38,Story,US-85 See how to pay the payer,8,"As a friend, I want to see the payer's QR and copy their account number, so that I can pay in seconds.","1. Given Daniel opens his personal link, when he views the summary, then he sees the payer's QR with ""Save image"" and ""Copy account number"".
+2. Given someone opens a public link, when the page loads, then no payment details are shown.",3,Low,Could,"FR-30, BR-22",frontend,backend,feature-expansion,Person A,Person B,
+39,Subtask,Extend split engine for gift allocations,9,Part of US-40 Cover an item or category as a gift. Estimate 4 h.,,,,,,,,,Person B,,4
+40,Subtask,"Unit tests: BR-13 example, category gift, removing a gift",9,Part of US-40 Cover an item or category as a gift. Estimate 3 h.,,,,,,,,,Person B,,3
+41,Subtask,API: add and remove gifts on a receipt,9,Part of US-40 Cover an item or category as a gift. Estimate 3 h.,,,,,,,,,Person B,,3
+42,Subtask,"UI: ""Cover this"" toggle on item and category",9,Part of US-40 Cover an item or category as a gift. Estimate 4 h.,,,,,,,,,Person A,,4
+43,Subtask,"UI: ""Covered by"" label on summary and share page",9,Part of US-40 Cover an item or category as a gift. Estimate 2 h.,,,,,,,,,Person A,,2
+44,Subtask,Track event gift_added,9,Part of US-40 Cover an item or category as a gift. Estimate 1 h.,,,,,,,,,Person B,,1
+45,Subtask,Write test cases for gifts in DOC-10,9,Part of US-40 Cover an item or category as a gift. Estimate 2 h.,,,,,,,,,Person A,,2
+46,Subtask,Split engine: redistribute a treated member's share (proportional and equal),10,Part of US-41 Treat a person. Estimate 4 h.,,,,,,,,,Person B,,4
+47,Subtask,Unit tests including rounding of the redistributed share,10,Part of US-41 Treat a person. Estimate 3 h.,,,,,,,,,Person B,,3
+48,Subtask,"UI: ""Treat this person"" on the member list, with split option",10,Part of US-41 Treat a person. Estimate 3 h.,,,,,,,,,Person A,,3
+49,Subtask,Share page: treated member's view,10,Part of US-41 Treat a person. Estimate 2 h.,,,,,,,,,Person A,,2
+50,Subtask,Track event person_treated,10,Part of US-41 Treat a person. Estimate 1 h.,,,,,,,,,Person B,,1
+51,Subtask,Write test cases for treats in DOC-10,10,Part of US-41 Treat a person. Estimate 2 h.,,,,,,,,,Person A,,2
+52,Subtask,DB: member_links table and migration,11,Part of US-45 Personal link for each member. Estimate 2 h.,,,,,,,,,Person B,,2
+53,Subtask,API: create and revoke personal links,11,Part of US-45 Personal link for each member. Estimate 3 h.,,,,,,,,,Person B,,3
+54,Subtask,Token generation and validation middleware,11,Part of US-45 Personal link for each member. Estimate 3 h.,,,,,,,,,Person B,,3
+55,Subtask,"UI: ""Let friends claim"" button with prefilled WhatsApp message",11,Part of US-45 Personal link for each member. Estimate 3 h.,,,,,,,,,Person A,,3
+56,Subtask,"Security test: guessed tokens, access to another receipt",11,Part of US-45 Personal link for each member. Estimate 2 h.,,,,,,,,,Person B,,2
+57,Subtask,Track event claim_link_shared,11,Part of US-45 Personal link for each member. Estimate 1 h.,,,,,,,,,Person B,,1
+58,Subtask,Share page: claim UI (mobile web),12,Part of US-46 Claim my items. Estimate 6 h.,,,,,,,,,Person A,,6
+59,Subtask,API: add and remove claims,12,Part of US-46 Claim my items. Estimate 4 h.,,,,,,,,,Person B,,4
+60,Subtask,Claim by unit for items with quantity above 1,12,Part of US-46 Claim my items. Estimate 3 h.,,,,,,,,,Person B,,3
+61,Subtask,Lock claims when the split is finalised,12,Part of US-46 Claim my items. Estimate 1 h.,,,,,,,,,Person B,,1
+62,Subtask,API: running total for a member,12,Part of US-46 Claim my items. Estimate 2 h.,,,,,,,,,Person B,,2
+63,Subtask,"Test cases and mobile browser checks (Chrome, Safari)",12,Part of US-46 Claim my items. Estimate 3 h.,,,,,,,,,Person A,,3
+64,Subtask,Track event item_claimed,12,Part of US-46 Claim my items. Estimate 1 h.,,,,,,,,,Person B,,1
+65,Subtask,"UI: ""Shared with"" member picker",13,Part of US-47 Mark an item as shared. Estimate 3 h.,,,,,,,,,Person A,,3
+66,Subtask,API: multi-member claims on one item,13,Part of US-47 Mark an item as shared. Estimate 2 h.,,,,,,,,,Person B,,2
+67,Subtask,Unit tests: equal split from claims,13,Part of US-47 Mark an item as shared. Estimate 2 h.,,,,,,,,,Person B,,2
+68,Subtask,UI: progress bar and unclaimed list,14,Part of US-48 See claim progress. Estimate 3 h.,,,,,,,,,Person A,,3
+69,Subtask,API: claim status summary,14,Part of US-48 See claim progress. Estimate 2 h.,,,,,,,,,Person B,,2
+70,Subtask,Push notification when all items are claimed,14,Part of US-48 See claim progress. Estimate 3 h.,,,,,,,,,Person B,,3
+71,Subtask,Write test cases,14,Part of US-48 See claim progress. Estimate 1 h.,,,,,,,,,Person A,,1
+72,Subtask,UI: reassign claims on the assign screen,15,Part of US-49 Override claims before finalising. Estimate 3 h.,,,,,,,,,Person A,,3
+73,Subtask,API: payer override with audit log,15,Part of US-49 Override claims before finalising. Estimate 2 h.,,,,,,,,,Person B,,2
+74,Subtask,Notify members whose claims changed,15,Part of US-49 Override claims before finalising. Estimate 2 h.,,,,,,,,,Person B,,2
+75,Subtask,Write test cases,15,Part of US-49 Override claims before finalising. Estimate 1 h.,,,,,,,,,Person A,,1
+76,Subtask,Update AI JSON schema: discounts with scope (bill or item),16,Part of US-52 Read discounts and promos from the receipt. Estimate 2 h.,,,,,,,,,Person B,,2
+77,Subtask,Update prompt with promo examples (new prompt version),16,Part of US-52 Read discounts and promos from the receipt. Estimate 3 h.,,,,,,,,,Person B,,3
+78,Subtask,Update Zod schema and validation,16,Part of US-52 Read discounts and promos from the receipt. Estimate 2 h.,,,,,,,,,Person B,,2
+79,Subtask,Add 5 promo receipts to the evaluation set and re-run DOC-09,16,Part of US-52 Read discounts and promos from the receipt. Estimate 3 h.,,,,,,,,,Person B,,3
+80,Subtask,Review table: show discount lines,16,Part of US-52 Read discounts and promos from the receipt. Estimate 3 h.,,,,,,,,,Person A,,3
+81,Subtask,Split engine: Everyone and Item owner discount modes,17,Part of US-53 Choose who benefits from a discount. Estimate 4 h.,,,,,,,,,Person B,,4
+82,Subtask,Unit tests for both modes,17,Part of US-53 Choose who benefits from a discount. Estimate 3 h.,,,,,,,,,Person B,,3
+83,Subtask,UI: mode selector on each discount,17,Part of US-53 Choose who benefits from a discount. Estimate 3 h.,,,,,,,,,Person A,,3
+84,Subtask,Breakdown: show each person's discount,17,Part of US-53 Choose who benefits from a discount. Estimate 2 h.,,,,,,,,,Person A,,2
+85,Subtask,Split engine: average mode for buy 1 free 1,18,Part of US-54 Share a buy 1 free 1 fairly. Estimate 2 h.,,,,,,,,,Person B,,2
+86,Subtask,UI: buy 1 free 1 option,18,Part of US-54 Share a buy 1 free 1 fairly. Estimate 2 h.,,,,,,,,,Person A,,2
+87,Subtask,Unit tests for both options,18,Part of US-54 Share a buy 1 free 1 fairly. Estimate 2 h.,,,,,,,,,Person B,,2
+88,Subtask,"Research push, email and WhatsApp options and costs",19,Part of US-57 Spike: choose reminder channels. Estimate 4 h.,,,,,,,,,Person B,,4
+89,Subtask,Write decision D-11 in DOC-06,19,Part of US-57 Spike: choose reminder channels. Estimate 2 h.,,,,,,,,,Person B,,2
+90,Subtask,DB: payments table and status values,20,Part of US-58 Tell the payer I've paid. Estimate 2 h.,,,,,,,,,Person B,,2
+91,Subtask,"API: mark as paid, proof upload to private storage",20,Part of US-58 Tell the payer I've paid. Estimate 3 h.,,,,,,,,,Person B,,3
+92,Subtask,"Share page and app: ""I've paid"" button and upload",20,Part of US-58 Tell the payer I've paid. Estimate 3 h.,,,,,,,,,Person A,,3
+93,Subtask,Notify the payer,20,Part of US-58 Tell the payer I've paid. Estimate 2 h.,,,,,,,,,Person B,,2
+94,Subtask,Track event payment_marked,20,Part of US-58 Tell the payer I've paid. Estimate 1 h.,,,,,,,,,Person B,,1
+95,Subtask,UI: payer's payment status screen,21,Part of US-59 Confirm payments. Estimate 4 h.,,,,,,,,,Person A,,4
+96,Subtask,API: confirm payment,21,Part of US-59 Confirm payments. Estimate 1 h.,,,,,,,,,Person B,,1
+97,Subtask,Settled state for receipts,21,Part of US-59 Confirm payments. Estimate 1 h.,,,,,,,,,Person B,,1
+98,Subtask,Write test cases,21,Part of US-59 Confirm payments. Estimate 1 h.,,,,,,,,,Person A,,1
+99,Subtask,Reminder schedule table and rules,22,Part of US-60 Automatic polite reminders. Estimate 4 h.,,,,,,,,,Person B,,4
+100,Subtask,Scheduled job to send due reminders,22,Part of US-60 Automatic polite reminders. Estimate 3 h.,,,,,,,,,Person B,,3
+101,Subtask,Email sending integration,22,Part of US-60 Automatic polite reminders. Estimate 3 h.,,,,,,,,,Person B,,3
+102,Subtask,Push notifications in the Flutter app,22,Part of US-60 Automatic polite reminders. Estimate 4 h.,,,,,,,,,Person A,,4
+103,Subtask,Write 3 reminder wordings to test in UAT,22,Part of US-60 Automatic polite reminders. Estimate 2 h.,,,,,,,,,Person A,,2
+104,Subtask,"Unit tests: timing, quiet hours, stop when paid, maximum of 4",22,Part of US-60 Automatic polite reminders. Estimate 3 h.,,,,,,,,,Person B,,3
+105,Subtask,Track event reminder_sent,22,Part of US-60 Automatic polite reminders. Estimate 1 h.,,,,,,,,,Person B,,1
+106,Subtask,UI: reminder controls per person,23,Part of US-61 Control reminders. Estimate 2 h.,,,,,,,,,Person A,,2
+107,Subtask,"API: pause, resume, change schedule",23,Part of US-61 Control reminders. Estimate 1 h.,,,,,,,,,Person B,,1
+108,Subtask,Write test cases,23,Part of US-61 Control reminders. Estimate 1 h.,,,,,,,,,Person A,,1
+109,Subtask,WhatsApp share with message template,24,Part of US-62 One-tap WhatsApp reminder. Estimate 2 h.,,,,,,,,,Person A,,2
+110,Subtask,Track event reminder_manual,24,Part of US-62 One-tap WhatsApp reminder. Estimate 1 h.,,,,,,,,,Person B,,1
+111,Subtask,API: short-lived signed photo URL for members,25,Part of US-65 See the receipt photo and full item list. Estimate 2 h.,,,,,,,,,Person B,,2
+112,Subtask,Share page: photo viewer and full item list,25,Part of US-65 See the receipt photo and full item list. Estimate 3 h.,,,,,,,,,Person A,,3
+113,Subtask,Security test: revoked link and other receipts,25,Part of US-65 See the receipt photo and full item list. Estimate 1 h.,,,,,,,,,Person B,,1
+114,Subtask,API: per-member breakdown,26,Part of US-66 See how my amount was calculated. Estimate 3 h.,,,,,,,,,Person B,,3
+115,Subtask,UI: breakdown panel in app and share page,26,Part of US-66 See how my amount was calculated. Estimate 4 h.,,,,,,,,,Person A,,4
+116,Subtask,Unit test: breakdown lines sum to the share,26,Part of US-66 See how my amount was calculated. Estimate 1 h.,,,,,,,,,Person B,,1
+117,Subtask,DB: comments table,27,Part of US-68 Comment on an item. Estimate 1 h.,,,,,,,,,Person B,,1
+118,Subtask,API: create and list comments,27,Part of US-68 Comment on an item. Estimate 3 h.,,,,,,,,,Person B,,3
+119,Subtask,UI: comment thread on an item (app and share page),27,Part of US-68 Comment on an item. Estimate 5 h.,,,,,,,,,Person A,,5
+120,Subtask,Notifications for new comments and replies,27,Part of US-68 Comment on an item. Estimate 2 h.,,,,,,,,,Person B,,2
+121,Subtask,Track event comment_created,27,Part of US-68 Comment on an item. Estimate 1 h.,,,,,,,,,Person B,,1
+122,Subtask,UI: open-comment badge and resolve action,28,Part of US-69 Resolve item queries. Estimate 2 h.,,,,,,,,,Person A,,2
+123,Subtask,API: resolve a comment,28,Part of US-69 Resolve item queries. Estimate 1 h.,,,,,,,,,Person B,,1
+124,Subtask,UI: warning on finalise with open comments,28,Part of US-69 Resolve item queries. Estimate 1 h.,,,,,,,,,Person A,,1
+125,Subtask,Write test cases,28,Part of US-69 Resolve item queries. Estimate 1 h.,,,,,,,,,Person A,,1
+126,Subtask,Define the category list and definitions,29,Part of US-72 Categorise receipts automatically. Estimate 2 h.,,,,,,,,,Person A,,2
+127,Subtask,Add category to the AI JSON and prompt,29,Part of US-72 Categorise receipts automatically. Estimate 2 h.,,,,,,,,,Person B,,2
+128,Subtask,Merchant rules table and lookup,29,Part of US-72 Categorise receipts automatically. Estimate 3 h.,,,,,,,,,Person B,,3
+129,Subtask,Measure category accuracy on the evaluation set,29,Part of US-72 Categorise receipts automatically. Estimate 3 h.,,,,,,,,,Person B,,3
+130,Subtask,UI: category picker,30,Part of US-73 Change a category. Estimate 2 h.,,,,,,,,,Person A,,2
+131,Subtask,API: save a merchant rule,30,Part of US-73 Change a category. Estimate 2 h.,,,,,,,,,Person B,,2
+132,Subtask,Write test cases,30,Part of US-73 Change a category. Estimate 1 h.,,,,,,,,,Person A,,1
+133,Subtask,SQL view: member share by month and category,31,Part of US-74 Monthly spending summary. Estimate 3 h.,,,,,,,,,Person B,,3
+134,Subtask,API: monthly summary,31,Part of US-74 Monthly spending summary. Estimate 2 h.,,,,,,,,,Person B,,2
+135,Subtask,UI: summary charts,31,Part of US-74 Monthly spending summary. Estimate 5 h.,,,,,,,,,Person A,,5
+136,Subtask,"Unit tests: % change, including a month with no spending",31,Part of US-74 Monthly spending summary. Estimate 2 h.,,,,,,,,,Person B,,2
+137,Subtask,Scheduled monthly job,32,Part of US-75 Monthly summary notification. Estimate 2 h.,,,,,,,,,Person B,,2
+138,Subtask,Write notification wording,32,Part of US-75 Monthly summary notification. Estimate 1 h.,,,,,,,,,Person A,,1
+139,Subtask,UI: opt-out setting,32,Part of US-75 Monthly summary notification. Estimate 2 h.,,,,,,,,,Person A,,2
+140,Subtask,Engine: net balances across receipts,33,Part of US-78 Net balances across an event. Estimate 3 h.,,,,,,,,,Person B,,3
+141,Subtask,Unit tests with a zero-sum check,33,Part of US-78 Net balances across an event. Estimate 2 h.,,,,,,,,,Person B,,2
+142,Subtask,UI: balances screen,33,Part of US-78 Net balances across an event. Estimate 3 h.,,,,,,,,,Person A,,3
+143,Subtask,Matching algorithm: largest debtor to largest creditor,34,Part of US-79 Suggest the fewest transfers. Estimate 3 h.,,,,,,,,,Person B,,3
+144,Subtask,Randomised tests on many group sizes,34,Part of US-79 Suggest the fewest transfers. Estimate 3 h.,,,,,,,,,Person B,,3
+145,Subtask,UI: settlement plan,34,Part of US-79 Suggest the fewest transfers. Estimate 3 h.,,,,,,,,,Person A,,3
+146,Subtask,Link settlement transfers to the payments table,35,Part of US-80 Mark settlement transfers as paid. Estimate 2 h.,,,,,,,,,Person B,,2
+147,Subtask,UI: mark and confirm transfers,35,Part of US-80 Mark settlement transfers as paid. Estimate 2 h.,,,,,,,,,Person A,,2
+148,Subtask,Write test cases,35,Part of US-80 Mark settlement transfers as paid. Estimate 1 h.,,,,,,,,,Person A,,1
+149,Subtask,Analyse survey Q10 and run 3 short interviews,36,Part of US-83 Spike: validate payment details feature. Estimate 3 h.,,,,,,,,,Person A,,3
+150,Subtask,Privacy review of showing bank details,36,Part of US-83 Spike: validate payment details feature. Estimate 2 h.,,,,,,,,,Person B,,2
+151,Subtask,Write decision D-10 in DOC-06,36,Part of US-83 Spike: validate payment details feature. Estimate 1 h.,,,,,,,,,Person A,,1
+152,Subtask,Private storage and profile fields for payment details,37,Part of US-84 Add my payment details. Estimate 2 h.,,,,,,,,,Person B,,2
+153,Subtask,"UI: add, edit and remove payment details",37,Part of US-84 Add my payment details. Estimate 3 h.,,,,,,,,,Person A,,3
+154,Subtask,Share page: payment card,38,Part of US-85 See how to pay the payer. Estimate 3 h.,,,,,,,,,Person A,,3
+155,Subtask,API: member-only access to payment details,38,Part of US-85 See how to pay the payer. Estimate 1 h.,,,,,,,,,Person B,,1
+156,Subtask,Security test: public link shows nothing,38,Part of US-85 See how to pay the payer. Estimate 1 h.,,,,,,,,,Person B,,1
+157,Task,Raise change request CR-02 for the feature expansion,,Feature expansion documentation task. Set Parent to epic E7 after import.,,,Medium,,,ba-doc,change-request,,Person A,,2
+158,Task,DOC-01: add hypotheses and survey questions for the new features,,Feature expansion documentation task. Set Parent to epic E7 after import.,,,Medium,,,ba-doc,research,,Person A,,3
+159,Task,DOC-02: add FR-19 to FR-30,,Feature expansion documentation task. Set Parent to epic E7 after import.,,,Medium,,,ba-doc,,,Person A,,2
+160,Task,DOC-04: add BR-13 to BR-22 with test IDs,,Feature expansion documentation task. Set Parent to epic E7 after import.,,,Medium,,,ba-doc,,,Person A,,3
+161,Task,"DOC-05: update data model, API and state model",,Feature expansion documentation task. Set Parent to epic E7 after import.,,,Medium,,,ba-doc,backend,,Person B,,5
+162,Task,DOC-07: add risks for the new features,,Feature expansion documentation task. Set Parent to epic E7 after import.,,,Medium,,,ba-doc,,,Person A,,1
+163,Task,DOC-08: add events and KPIs for the new features,,Feature expansion documentation task. Set Parent to epic E7 after import.,,,Medium,,,ba-doc,data,,Person B,,3
+164,Task,DOC-10: add test cases and update the RTM,,Feature expansion documentation task. Set Parent to epic E7 after import.,,,Medium,,,ba-doc,testing,,Person A,,4
+165,Task,"Wireframes: claim page, payment status, comments, settlement, summary",,Feature expansion documentation task. Set Parent to epic E7 after import.,,,Medium,,,ba-doc,frontend,,Person A,,8
+,,,,,,,,,,,,,,,
